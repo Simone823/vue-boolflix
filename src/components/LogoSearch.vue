@@ -15,10 +15,10 @@
         <!-- Input text, button -->
         <div class="search_btn_wrapper">
             <!-- Input text -->
-            <input type="text" placeholder="Digita il nome del film">
+            <input type="text" v-model="userInput" @keyup.enter="getServerMovies()" placeholder="Digita il nome del film">
 
             <!-- Button -->
-            <button>
+            <button @click="getServerMovies()">
                 <img src="../assets/img/search_logo.png" alt="">
             </button>
         </div>
@@ -30,8 +30,48 @@
 
 
 <script>
+// Import axios
+import axios from 'axios';
+
 export default {
     name: "LogoSearch",
+
+    data(){
+        return {
+
+            // Input user
+            userInput: "",
+
+            // Array film
+            arrayMovie: [],
+        }
+    },
+
+    methods: {
+
+        // Chiamata server movie
+        getServerMovies: function() {
+            axios.get("https://api.themoviedb.org/3/search/movie", {
+                params: {
+                    api_key: "fb43e793fe97fd60ade4def79dc2a4d7",
+                    query: this.userInput,
+                    language: "it",
+                }
+            })
+            .then(res => {
+                // console.log(res.data.results);
+                this.arrayMovie = res.data.results;
+
+                // Invio i dati dell'array al componente app con evento arrayMovie
+                this.$emit("arrayMovie", this.arrayMovie);
+            })
+
+            // Svuoto l'userInput
+            this.userInput = "";
+
+        },
+
+    }
 }
 </script>
 
