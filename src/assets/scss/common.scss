@@ -1,2 +1,22 @@
 // Import font source Oregano
 @import "@fontsource/oregano/index.css";
+
+// Reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Img svg
+img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+// Color black
+$color-black: rgb(29, 29, 29);
+
+// Color red
+$color-red: #f80000;
