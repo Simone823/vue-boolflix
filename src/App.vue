@@ -5,7 +5,7 @@
     
     <!-- Header -->
     <header>
-      <LogoSearch/>
+      <LogoSearch @arrayMovie="recuperoArrayMovie"/>
     </header>
 
   </div>
@@ -22,7 +22,25 @@ export default {
   name: 'App',
   components: {
     LogoSearch,
-  }
+  },
+
+  data() {
+    return {
+
+      // recupero Array Movie
+      arrayMovieRec: [],
+      
+    }
+  },
+
+  methods: {
+
+    // Recupero arrayMovie
+    recuperoArrayMovie: function(arrayMovie) {
+      this.arrayMovieRec = arrayMovie;
+    },
+
+  },
 }
 
 </script>
