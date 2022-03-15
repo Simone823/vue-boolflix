@@ -5,12 +5,12 @@
     
     <!-- Header -->
     <header>
-      <LogoSearch @arrayMovie="recuperoArrayMovie"/>
+      <LogoSearch @arrayMovie="recuperoArrayMovie" @arrayTv="recuperoArrayTv"/>
     </header>
 
     <!-- Main -->
     <main>
-      <MoviesTv :moviesArray="arrayMovieRec"/>
+      <MoviesTv :moviesArray="arrayMovieRec" :tvArray="arrayTvRec"/>
     </main>
 
   </div>
@@ -39,6 +39,9 @@ export default {
       // recupero Array Movie
       arrayMovieRec: [],
 
+      // recupero array tv
+      arrayTvRec: [],
+
     }
   },
 
@@ -48,6 +51,11 @@ export default {
     recuperoArrayMovie: function(arrayMovie) {
       this.arrayMovieRec = arrayMovie;
     },
+
+    // Recupero array Tv
+    recuperoArrayTv: function(arrayTv) {
+      this.arrayTvRec = arrayTv;
+    }
 
   },
 }
