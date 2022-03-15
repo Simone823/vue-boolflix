@@ -3,6 +3,11 @@
   <!-- App vue -->
   <div id="app">
     
+    <!-- Header -->
+    <header>
+      <LogoSearch/>
+    </header>
+
   </div>
 
 </template>
@@ -10,11 +15,13 @@
 
 
 <script>
+// Import Logo_Search
+import LogoSearch from "./components/LogoSearch.vue"
 
 export default {
   name: 'App',
   components: {
-
+    LogoSearch,
   }
 }
 
@@ -29,4 +36,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   font-family: "Oregano", cursive;
 }
+
+header {
+  padding: 30px;
+  background-color: $color-black; 
+}
+
 </style>
