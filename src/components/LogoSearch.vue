@@ -66,6 +66,10 @@ export default {
                 this.$emit("arrayMovie", this.arrayMovie);
             })
 
+            .catch(error => {
+                alert(error);
+            })
+
             // Svuoto l'userInput
             this.userInput = "";
 
