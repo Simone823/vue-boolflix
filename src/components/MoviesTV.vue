@@ -20,7 +20,13 @@
             </div>
 
         </div>
-        
+
+        <!-- Loading -->
+        <div class="loading" :class="moviesArray.length == 0 ? 'active' : '' ">
+            <div class="circle"></div>
+            <h2>Nella barra di ricerca scrivi un film o una serie tv e premi invio</h2>
+        </div>
+
     </div>
 
 </template>
@@ -60,24 +66,69 @@ export default {
             margin-bottom: 20px;
         }
 
-        .title {
-            font-size: 20px;
-            text-shadow: 0 0 5px black;
-            margin-bottom: 5px;
-        }
+        .info {
+            padding: 0 5px;
 
-        .original_title {
-            color: $color-green;
-            text-shadow: 0 0 5px black;
-        }
+            .title {
+                font-size: 20px;
+                text-shadow: 0 0 5px black;
+                margin-bottom: 5px;
+            }
 
-        .language {
-            margin-bottom: 8px;
-            font-size: 18px;
+            .original_title {
+                color: $color-green;
+                text-shadow: 0 0 5px black;
+            }
+
+            .language {
+                margin-bottom: 8px;
+                font-size: 18px;
+            }
         }
     }
 
+    .loading {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+
+        &.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .circle {
+            width: 80px;
+            height: 80px;
+            border: 4px solid $color-red;
+            border-top: none;
+            border-radius: 50%;
+            border-left: none;
+            animation: rotate 1.2s linear infinite;
+            align-self: center;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 8px $color-red);
+        }
+
+        h2 {
+            text-shadow: 0 0 5px $color-red;
+            font-size: 28px;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    }
 }
+
 
 
 </style>
