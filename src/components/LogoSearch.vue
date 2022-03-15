@@ -85,6 +85,7 @@ export default {
     display: flex;
     align-items: center;
     gap: 20px;
+    flex-wrap: wrap;
 
 
     .logo_wrapper {
