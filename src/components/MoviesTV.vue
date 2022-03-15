@@ -10,7 +10,7 @@
             <div class="movie_card" v-for="element in moviesArray" :key="element.id">
                 <!-- Img wrapper -->
                 <div class="img_wrapper">
-                <img src="https://picsum.photos/200" alt="">
+                <img :src="`https://image.tmdb.org/t/p/w342/${element.poster_path}`"  alt="">
                 </div>
 
                 <!-- Info wrapper -->
@@ -30,7 +30,7 @@
             <div class="tv_card" v-for="element in tvArray" :key="element.id">
                 <!-- Img wrapper -->
                 <div class="img_wrapper">
-                    <img src="" alt="">
+                    <img :src="`https://image.tmdb.org/t/p/w342/${element.poster_path}`" alt="">
                 </div>
 
                 <!-- Info wrapper -->
@@ -79,7 +79,7 @@ export default {
     width: 100%;
     display: flex;
     flex-direction: column;
-    row-gap: 35px;
+    row-gap: 80px;
 
     .wrapper_movie {
         display: flex;
