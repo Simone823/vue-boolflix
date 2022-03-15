@@ -15,10 +15,10 @@
         <!-- Input text, button -->
         <div class="search_btn_wrapper">
             <!-- Input text -->
-            <input type="text" v-model="userInput" @keyup.enter="getServerMovies()" placeholder="Digita il nome del film">
+            <input type="text" v-model="userInput" @keyup.enter="getServerMovies(), getServerTv()" placeholder="Digita il nome del film">
 
             <!-- Button -->
-            <button @click="getServerMovies()">
+            <button @click="getServerMovies(), getServerTv()">
                 <img src="../assets/img/search_logo.png" alt="">
             </button>
         </div>
@@ -44,6 +44,9 @@ export default {
 
             // Array film
             arrayMovie: [],
+
+            // Array tv
+            arrayTv: [],
         }
     },
 
@@ -70,11 +73,29 @@ export default {
                 alert(error);
             })
 
-            // Svuoto l'userInput
-            this.userInput = "";
-
         },
 
+        // Chiamata server tv
+        getServerTv: function () {
+            axios.get("https://api.themoviedb.org/3/search/tv", {
+                params: {
+                    api_key: "fb43e793fe97fd60ade4def79dc2a4d7",
+                    query: this.userInput,
+                    language: "it",
+                }
+            })
+            .then (response => {
+                // console.log(res.data.results);
+                this.arrayTv = response.data.results;
+
+                 // Invio i dati dell'arrayTv al componente app con evento arrayTv
+                this.$emit("arrayTv", this.arrayTv);
+
+            })
+
+            // Svuoto l'userInput
+            this.userInput = "";
+        },
     }
 }
 </script>
