@@ -43,7 +43,7 @@
 
         <!-- Serie tv wrapper -->
         <div class="tv_wrapper">
-            <div class="categoria" v-if="moviesArray.length > 0">
+            <div class="categoria" v-if="tvArray.length > 0">
                 <h1>Series Tv</h1>
             </div>
 
