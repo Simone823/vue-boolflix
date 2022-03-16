@@ -143,6 +143,11 @@ export default {
             position: relative;
             filter: drop-shadow(0 0 5px gray);
 
+            &:hover {
+                transform: scale(0.94);
+                transition: all 200ms linear;
+            }
+
             &:hover .info {
                 display: block;
                 background-color: rgba($color: #000000, $alpha: 0.9);
@@ -215,6 +220,11 @@ export default {
             width: calc(100% / 6 - 35px);
             position: relative;
             filter: drop-shadow(0 0 5px gray);
+
+            &:hover {
+                transform: scale(0.94);
+                transition: all 200ms linear;
+            }
 
             &:hover .info_wrapper {
                 display: block;
