@@ -149,6 +149,7 @@ export default {
                 .original_title {
                     color: $color-green;
                     text-shadow: 0 0 5px black;
+                    margin-bottom: 5px;
                 }
 
                 .language {
@@ -196,6 +197,7 @@ export default {
                 .original_name {
                     color: $color-green;
                     text-shadow: 0 0 5px black;
+                    margin-bottom: 5px;
                 }
 
                 .original_language {
