@@ -37,6 +37,7 @@
                     <!-- ------------------------------------------------------------------------------------------------------ -->
 
                     <span class="vote" v-for="(el, index) in 5" :key="index" :class="index < arrotondoVote(element) ? 'color-yellow' : ''">&starf;</span>
+                    <p class="overview">{{element.overview}}</p>
                 </div>
             </div>
         </div>
@@ -75,6 +76,7 @@
                     <!-- ------------------------------------------------------------------------------------------------------ -->
 
                     <span class="vote" v-for="(el, index) in 5" :key="index" :class="index < arrotondoVote(element) ? 'color-yellow' : ''">&starf;</span>
+                    <p class="overview">{{element.overview}}</p>
                 </div>
             </div>
 
@@ -129,7 +131,7 @@ export default {
     .wrapper_movie {
         display: flex;
         flex-wrap: wrap;
-        gap: 25px;
+        gap: 35px;
         row-gap: 35px;
 
         .categoria {
@@ -137,7 +139,14 @@ export default {
         }
 
         .movie_card {
-            width: calc(100% / 6 - 25px);
+            width: calc(100% / 6 - 35px);
+            position: relative;
+            filter: drop-shadow(0 0 5px gray);
+
+            &:hover .info {
+                display: block;
+                background-color: rgba($color: #000000, $alpha: 0.9);
+            }
 
             .img_wrapper {
                 width: 100%;
@@ -146,10 +155,17 @@ export default {
             }
 
             .info {
-                padding: 0 5px;
+                padding: 10px 10px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                display: none;
+                overflow-y: auto;
 
                 .title {
-                    font-size: 20px;
+                    font-size: 18px;
                     text-shadow: 0 0 5px black;
                     margin-bottom: 5px;
                 }
@@ -161,7 +177,7 @@ export default {
                 }
 
                 .language {
-                    margin-bottom: 8px;
+                    margin-bottom: 5px;
                     font-size: 18px;
 
                     img {
@@ -171,9 +187,15 @@ export default {
                 }
 
                 .vote {
+                    font-size: 20px;
+
                     &.color-yellow {
                         color: yellow;
                     }
+                }
+
+                .overview {
+                    margin-top: 5px;
                 }
             }
         }
@@ -182,7 +204,7 @@ export default {
     .tv_wrapper {
         display: flex;
         flex-wrap: wrap;
-        gap: 25px;
+        gap: 35px;
         row-gap: 35px;
 
         .categoria {
@@ -190,17 +212,30 @@ export default {
         }
 
         .tv_card {
-            width: calc(100% / 6 - 25px);
+            width: calc(100% / 6 - 35px);
+            position: relative;
+            filter: drop-shadow(0 0 5px gray);
+
+            &:hover .info_wrapper {
+                display: block;
+                background-color: rgba($color: #000000, $alpha: 0.9);
+            }
 
             .img_wrapper {
                 width: 100%;
                 height: 380px;
                 aspect-ratio: 1/1;
-                margin-bottom: 20px;
             }
 
             .info_wrapper {
-                padding: 0 5px;
+                padding: 10px 10px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                display: none;
+                overflow-y: auto;
 
                 .name {
                     font-size: 20px;
@@ -224,10 +259,16 @@ export default {
                     }
                 }
 
-                    .vote {
+                .vote {
+                    font-size: 20px;
+                    
                     &.color-yellow {
                         color: yellow;
                     }
+                }
+
+                .overview {
+                    margin-top: 5px;
                 }
             }
         }
