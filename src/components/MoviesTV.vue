@@ -17,7 +17,22 @@
                 <div class="info">
                     <h1 class="title">{{element.title}}</h1>
                     <p class="original_title">{{element.original_title}}</p>
-                    <p class="language">{{element.original_language}}</p>
+
+                    <!-- ------------------------------------------------------------------------------------------------------ -->
+                    <p class="language" v-if="element.original_language == 'en'">
+                        <img src="https://images.emojiterra.com/twitter/v13.1/512px/1f1ec-1f1e7.png" alt="">
+                    </p>
+                    <p class="language" v-else-if="element.original_language == 'fr'">
+                        <img src="https://images.emojiterra.com/twitter/v13.1/512px/1f1eb-1f1f7.png" alt="">
+                    </p>
+                    <p class="language" v-else-if="element.original_language == 'it'">
+                        <img src="https://images.emojiterra.com/twitter/v13.1/512px/1f1ee-1f1f9.png" alt="">
+                    </p>
+                    <p class="language" v-else>
+                        {{element.original_language}}
+                    </p>
+                    <!-- ------------------------------------------------------------------------------------------------------ -->
+
                     <p class="vote">{{element.vote_average}}</p>
                 </div>
             </div>
@@ -37,15 +52,30 @@
                 <div class="info_wrapper">
                     <h2 class="name">{{element.name}}</h2>
                     <p class="original_name">{{element.original_name}}</p>
-                    <p class="original_language">{{element.original_language}}</p>
-                    <p class="vote">{{element.vote}}</p>
+                    
+                    <!-- ------------------------------------------------------------------------------------------------------ -->
+                    <p class="original_language" v-if="element.original_language == 'en'">
+                        <img src="https://images.emojiterra.com/twitter/v13.1/512px/1f1ec-1f1e7.png" alt="">
+                    </p>
+                    <p class="original_language" v-else-if="element.original_language == 'fr'">
+                        <img src="https://images.emojiterra.com/twitter/v13.1/512px/1f1eb-1f1f7.png" alt="">
+                    </p>
+                    <p class="original_language" v-else-if="element.original_language == 'it'">
+                        <img src="https://images.emojiterra.com/twitter/v13.1/512px/1f1ee-1f1f9.png" alt="">
+                    </p>
+                    <p class="original_language" v-else>
+                        {{element.original_language}}
+                    </p>
+                    <!-- ------------------------------------------------------------------------------------------------------ -->
+
+                    <p class="vote">{{element.vote_average}}</p>
                 </div>
             </div>
 
         </div>
 
         <!-- Loading -->
-        <div class="loading" :class="moviesArray.length == 0 &&  tvArray.length == 0 ? 'active' : '' ">
+        <div class="loading" :class="moviesArray.length == 0 && tvArray.length == 0 ? 'active' : '' ">
             <div class="circle"></div>
             <h2>Nella barra di ricerca scrivi un film o una serie tv e premi invio</h2>
         </div>
@@ -114,6 +144,11 @@ export default {
                 .language {
                     margin-bottom: 8px;
                     font-size: 18px;
+
+                    img {
+                        width: 22px;
+                        height: 22px;
+                    }
                 }
             }
         }
@@ -152,6 +187,11 @@ export default {
                 .original_language {
                     margin-bottom: 8px;
                     font-size: 18px;
+
+                    img {
+                        width: 22px;
+                        height: 22px;
+                    }
                 }
             }
         }
