@@ -13,7 +13,7 @@
             <div class="movie_card" v-for="element in moviesArray" :key="element.id">
                 <!-- Img wrapper -->
                 <div class="img_wrapper">
-                <img :src="`https://image.tmdb.org/t/p/w342/${element.poster_path}`"  alt="">
+                    <img :src="`https://image.tmdb.org/t/p/w342/${element.poster_path}`"  alt="">
                 </div>
 
                 <!-- Info wrapper -->
@@ -36,7 +36,7 @@
                     </p>
                     <!-- ------------------------------------------------------------------------------------------------------ -->
 
-                    <p class="vote">{{element.vote_average}}</p>
+                    <span class="vote" v-for="(el, index) in 5" :key="index" :class="index < arrotondoVote(element) ? 'color-yellow' : ''">&starf;</span>
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
                     </p>
                     <!-- ------------------------------------------------------------------------------------------------------ -->
 
-                    <p class="vote">{{element.vote_average}}</p>
+                    <span class="vote" v-for="(el, index) in 5" :key="index" :class="index < arrotondoVote(element) ? 'color-yellow' : ''">&starf;</span>
                 </div>
             </div>
 
@@ -102,7 +102,16 @@ export default {
 
         // arrayTv
         tvArray: Array,
-    }
+    },
+
+    methods: {
+
+        // Arrotondo numero vote
+        arrotondoVote: function(element) {
+            return Math.ceil(element.vote_average / 2);
+        },
+        
+    },
 }
 </script>
 
@@ -128,13 +137,12 @@ export default {
         }
 
         .movie_card {
-        width: calc(100% / 6 - 25px);
+            width: calc(100% / 6 - 25px);
 
             .img_wrapper {
                 width: 100%;
                 height: 380px;
                 aspect-ratio: 1/1;
-                margin-bottom: 20px;
             }
 
             .info {
@@ -161,6 +169,12 @@ export default {
                         height: 22px;
                     }
                 }
+
+                .vote {
+                    &.color-yellow {
+                        color: yellow;
+                    }
+                }
             }
         }
     }
@@ -178,7 +192,7 @@ export default {
         .tv_card {
             width: calc(100% / 6 - 25px);
 
-                       .img_wrapper {
+            .img_wrapper {
                 width: 100%;
                 height: 380px;
                 aspect-ratio: 1/1;
@@ -207,6 +221,12 @@ export default {
                     img {
                         width: 22px;
                         height: 22px;
+                    }
+                }
+
+                    .vote {
+                    &.color-yellow {
+                        color: yellow;
                     }
                 }
             }
