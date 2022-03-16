@@ -5,6 +5,9 @@
 
         <!-- Wrapper movie -->
         <div class="wrapper_movie">
+            <div class="categoria" v-if="moviesArray.length > 0">
+                <h1>Movies</h1>
+            </div>
 
             <!-- Movie card -->
             <div class="movie_card" v-for="element in moviesArray" :key="element.id">
@@ -40,6 +43,9 @@
 
         <!-- Serie tv wrapper -->
         <div class="tv_wrapper">
+            <div class="categoria" v-if="moviesArray.length > 0">
+                <h1>Series Tv</h1>
+            </div>
 
             <!-- Tv card -->
             <div class="tv_card" v-for="element in tvArray" :key="element.id">
@@ -117,6 +123,10 @@ export default {
         gap: 25px;
         row-gap: 35px;
 
+        .categoria {
+            width: 100%;
+        }
+
         .movie_card {
         width: calc(100% / 6 - 25px);
 
@@ -159,6 +169,10 @@ export default {
         flex-wrap: wrap;
         gap: 25px;
         row-gap: 35px;
+
+        .categoria {
+            width: 100%;
+        }
 
         .tv_card {
             width: calc(100% / 6 - 25px);
