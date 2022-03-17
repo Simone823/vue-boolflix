@@ -156,6 +156,7 @@ export default {
                 animation: height 300ms linear;
                 opacity: 1;
                 transition: opacity 300ms linear;
+                display: block;
 
                 @keyframes height {
                     from {
@@ -187,6 +188,7 @@ export default {
                 bottom: 0;
                 overflow-y: auto;
                 opacity: 0;
+                display: none;
 
                 .title,
                 .name {
