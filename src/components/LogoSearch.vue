@@ -121,13 +121,13 @@ export default {
         img{
             width: 65px;
             height: 65px;
-            filter: drop-shadow(0 0 5px black);
+            filter: drop-shadow($text-shadow-black);
         }
     
         h1 {
             text-transform: uppercase;
             color: $color-red;
-            text-shadow: 0 0 5px black;
+            text-shadow: $text-shadow-black;
         }
     }
 
@@ -147,7 +147,7 @@ export default {
             padding-left: 20px;
             background-color: $color-gray;
             color: $color-white;
-            filter: drop-shadow(0 0 5px black);
+            filter: drop-shadow($text-shadow-black);
         }
 
         button {
@@ -157,7 +157,7 @@ export default {
             cursor: pointer;
             background-color: $color-green;
             opacity: 0.5;
-            filter: drop-shadow(0 0 5px black);
+            filter: drop-shadow($text-shadow-black);
 
             &:hover {
                 opacity: 1;
