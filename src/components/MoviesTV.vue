@@ -23,17 +23,8 @@
                     <p class="original_title">{{element.original_title}}</p>
 
                     <!-- ------------------------------------------------------------------------------------------------------ -->
-                    <p class="language" v-if="element.original_language == 'en'">
-                        <img src="https://images.emojiterra.com/twitter/v13.1/512px/1f1ec-1f1e7.png" alt="">
-                    </p>
-                    <p class="language" v-else-if="element.original_language == 'fr'">
-                        <img src="https://images.emojiterra.com/twitter/v13.1/512px/1f1eb-1f1f7.png" alt="">
-                    </p>
-                    <p class="language" v-else-if="element.original_language == 'it'">
-                        <img src="https://images.emojiterra.com/twitter/v13.1/512px/1f1ee-1f1f9.png" alt="">
-                    </p>
-                    <p class="language" v-else>
-                        {{element.original_language}}
+                    <p class="language">
+                        <img :src="`http://purecatamphetamine.github.io/country-flag-icons/3x2/${flagIcon(element.original_language)}.svg`">
                     </p>
                     <!-- ------------------------------------------------------------------------------------------------------ -->
 
@@ -61,21 +52,9 @@
                 <div class="info_wrapper">
                     <h2 class="name">{{element.name}}</h2>
                     <p class="original_name">{{element.original_name}}</p>
-                    
-                    <!-- ------------------------------------------------------------------------------------------------------ -->
-                    <p class="language" v-if="element.original_language == 'en'">
-                        <img src="https://images.emojiterra.com/twitter/v13.1/512px/1f1ec-1f1e7.png" alt="">
+                    <p class="language">
+                        <img :src="`http://purecatamphetamine.github.io/country-flag-icons/3x2/${flagIcon(element.original_language)}.svg`" alt="">
                     </p>
-                    <p class="language" v-else-if="element.original_language == 'fr'">
-                        <img src="https://images.emojiterra.com/twitter/v13.1/512px/1f1eb-1f1f7.png" alt="">
-                    </p>
-                    <p class="language" v-else-if="element.original_language == 'it'">
-                        <img src="https://images.emojiterra.com/twitter/v13.1/512px/1f1ee-1f1f9.png" alt="">
-                    </p>
-                    <p class="language" v-else>
-                        {{element.original_language}}
-                    </p>
-                    <!-- ------------------------------------------------------------------------------------------------------ -->
 
                     <span class="vote" v-for="(el, index) in 5" :key="index" :class="index < arrotondoVote(element) ? 'color-yellow' : ''">&starf;</span>
                     <p class="overview">{{element.overview}}</p>
@@ -97,6 +76,7 @@
 
 
 <script>
+
 export default {
     name: "MoviesTv",
 
@@ -114,6 +94,16 @@ export default {
         arrotondoVote: function(element) {
             return Math.ceil(element.vote_average / 2);
         },
+
+        // Flag icon
+        flagIcon: function (unicode) {
+            if (unicode == "en") {
+                unicode = "gb";
+            }
+
+            // console.log(unicode);
+            return unicode.toUpperCase();
+        }
         
     },
 }
