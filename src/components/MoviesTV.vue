@@ -13,7 +13,8 @@
             <div class="movie_card" v-for="element in moviesArray" :key="element.id">
                 <!-- Img wrapper -->
                 <div class="img_wrapper">
-                    <img :src="`https://image.tmdb.org/t/p/w342/${element.poster_path}`"  alt="">
+                    <img v-if="element.poster_path" :src="`https://image.tmdb.org/t/p/w342/${element.poster_path}`" alt="">
+                    <img v-else src="../assets/img/cover_default.png" alt="">
                 </div>
 
                 <!-- Info wrapper -->
@@ -52,7 +53,8 @@
             <div class="tv_card" v-for="element in tvArray" :key="element.id">
                 <!-- Img wrapper -->
                 <div class="img_wrapper">
-                    <img :src="`https://image.tmdb.org/t/p/w342/${element.poster_path}`" alt="">
+                    <img v-if="element.poster_path" :src="`https://image.tmdb.org/t/p/w342/${element.poster_path}`" alt="">
+                    <img v-else src="../assets/img/cover_default.png" alt="">
                 </div>
 
                 <!-- Info wrapper -->
@@ -137,6 +139,7 @@ export default {
 
         .categoria {
             width: 100%;
+            text-shadow: 0 0 5px $color-red;
         }
 
         .movie_card,
