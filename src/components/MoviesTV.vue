@@ -17,7 +17,7 @@
                 </div>
 
                 <!-- Info wrapper -->
-                <div class="info">
+                <div class="info_wrapper">
                     <h1 class="title">{{element.title}}</h1>
                     <p class="original_title">{{element.original_title}}</p>
 
@@ -43,7 +43,7 @@
         </div>
 
         <!-- Serie tv wrapper -->
-        <div class="tv_wrapper">
+        <div class="wrapper_tv">
             <div class="categoria" v-if="tvArray.length > 0">
                 <h1>Series Tv</h1>
             </div>
@@ -61,16 +61,16 @@
                     <p class="original_name">{{element.original_name}}</p>
                     
                     <!-- ------------------------------------------------------------------------------------------------------ -->
-                    <p class="original_language" v-if="element.original_language == 'en'">
+                    <p class="language" v-if="element.original_language == 'en'">
                         <img src="https://images.emojiterra.com/twitter/v13.1/512px/1f1ec-1f1e7.png" alt="">
                     </p>
-                    <p class="original_language" v-else-if="element.original_language == 'fr'">
+                    <p class="language" v-else-if="element.original_language == 'fr'">
                         <img src="https://images.emojiterra.com/twitter/v13.1/512px/1f1eb-1f1f7.png" alt="">
                     </p>
-                    <p class="original_language" v-else-if="element.original_language == 'it'">
+                    <p class="language" v-else-if="element.original_language == 'it'">
                         <img src="https://images.emojiterra.com/twitter/v13.1/512px/1f1ee-1f1f9.png" alt="">
                     </p>
-                    <p class="original_language" v-else>
+                    <p class="language" v-else>
                         {{element.original_language}}
                     </p>
                     <!-- ------------------------------------------------------------------------------------------------------ -->
@@ -128,7 +128,8 @@ export default {
     flex-direction: column;
     row-gap: 80px;
 
-    .wrapper_movie {
+    .wrapper_movie,
+    .wrapper_tv {
         display: flex;
         flex-wrap: wrap;
         gap: 35px;
@@ -138,93 +139,11 @@ export default {
             width: 100%;
         }
 
-        .movie_card {
-            width: calc(100% / 6 - 35px);
-            position: relative;
-            filter: drop-shadow(0 0 5px gray);
-            min-height: 400px;
-
-            &:hover {
-                transform: scale(0.94);
-                transition: all 200ms linear;
-            }
-
-            &:hover .info {
-                display: block;
-                background-color: rgba($color: #000000, $alpha: 0.9);
-            }
-
-            .img_wrapper {
-                width: 100%;
-                height: 100%;
-
-                img {
-                    object-fit: cover;
-                    object-position: center top;
-                }
-            }
-
-            .info {
-                padding: 10px 10px;
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                display: none;
-                overflow-y: auto;
-
-                .title {
-                    font-size: 18px;
-                    text-shadow: 0 0 5px black;
-                    margin-bottom: 5px;
-                }
-
-                .original_title {
-                    color: $color-green;
-                    text-shadow: 0 0 5px black;
-                    margin-bottom: 5px;
-                }
-
-                .language {
-                    margin-bottom: 5px;
-                    font-size: 18px;
-
-                    img {
-                        width: 22px;
-                        height: 22px;
-                    }
-                }
-
-                .vote {
-                    font-size: 20px;
-
-                    &.color-yellow {
-                        color: yellow;
-                    }
-                }
-
-                .overview {
-                    margin-top: 5px;
-                }
-            }
-        }
-    }
-
-    .tv_wrapper {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 35px;
-        row-gap: 35px;
-
-        .categoria {
-            width: 100%;
-        }
-
+        .movie_card,
         .tv_card {
             width: calc(100% / 6 - 35px);
             position: relative;
-            filter: drop-shadow(0 0 5px gray);
+            filter: drop-shadow(0 0 5px $color-gray-light);
             min-height: 400px;
 
             &:hover {
@@ -233,8 +152,20 @@ export default {
             }
 
             &:hover .info_wrapper {
-                display: block;
-                background-color: rgba($color: #000000, $alpha: 0.9);
+                background-color: rgba($color: $color-black-dark, $alpha: 0.85);
+                animation: height 300ms linear;
+                opacity: 1;
+                transition: opacity 300ms linear;
+
+                @keyframes height {
+                    from {
+                        height: 0;
+                    }
+
+                    100% {
+                        height: 100%;
+                    }
+                }
             }
 
             .img_wrapper {
@@ -254,24 +185,27 @@ export default {
                 left: 0;
                 right: 0;
                 bottom: 0;
-                display: none;
                 overflow-y: auto;
+                opacity: 0;
 
+                .title,
                 .name {
-                    font-size: 20px;
-                    text-shadow: 0 0 5px black;
+                    font-size: 18px;
+                    text-shadow: $text-shadow-black;
                     margin-bottom: 5px;
                 }
 
+                .original_title,
                 .original_name {
                     color: $color-green;
-                    text-shadow: 0 0 5px black;
+                    text-shadow: $text-shadow-black;
                     margin-bottom: 5px;
                 }
 
-                .original_language {
-                    margin-bottom: 8px;
+                .language {
+                    margin-bottom: 5px;
                     font-size: 18px;
+                    filter: drop-shadow($text-shadow-black);
 
                     img {
                         width: 22px;
@@ -281,19 +215,20 @@ export default {
 
                 .vote {
                     font-size: 20px;
-                    
+                    filter: drop-shadow($text-shadow-black);
+
                     &.color-yellow {
-                        color: yellow;
+                        color: $color-yellow;
                     }
                 }
 
                 .overview {
                     margin-top: 5px;
+                    text-shadow: $text-shadow-black;
                 }
             }
         }
     }
-
 
 
     .loading {
@@ -338,11 +273,7 @@ export default {
     }
 
     @media screen and (max-width: 1410px) {
-        .movie_card {
-            width: calc(100% / 4 - 35px)!important;
-            transition: all 200ms linear;
-        }
-
+        .movie_card,
         .tv_card {
             width: calc(100% / 4 - 35px)!important;
             transition: all 200ms linear;
@@ -350,11 +281,7 @@ export default {
     }
 
     @media screen and (max-width: 990px) {
-        .movie_card {
-            width: calc(100% / 3 - 35px)!important;
-            transition: all 200ms linear;
-        }
-
+        .movie_card, 
         .tv_card {
             width: calc(100% / 3 - 35px)!important;
             transition: all 200ms linear;
@@ -362,11 +289,7 @@ export default {
     }
 
     @media screen and (max-width: 768px) {
-        .movie_card {
-            width: calc(100% / 2 - 35px)!important;
-            transition: all 200ms linear;
-        }
-
+        .movie_card,
         .tv_card {
             width: calc(100% / 2 - 35px)!important;
             transition: all 200ms linear;
@@ -374,12 +297,7 @@ export default {
     }
 
     @media screen and (max-width: 560px) {
-        .movie_card {
-            width: calc(100% / 1 - 35px)!important;
-            transition: all 200ms linear;
-            flex-grow: 1;
-        }
-
+        .movie_card,
         .tv_card {
             width: calc(100% / 1 - 35px)!important;
             transition: all 200ms linear;
@@ -387,7 +305,6 @@ export default {
         }
     }
 }
-
 
 
 </style>
