@@ -142,6 +142,7 @@ export default {
             width: calc(100% / 6 - 35px);
             position: relative;
             filter: drop-shadow(0 0 5px gray);
+            min-height: 400px;
 
             &:hover {
                 transform: scale(0.94);
@@ -155,8 +156,12 @@ export default {
 
             .img_wrapper {
                 width: 100%;
-                height: 380px;
-                aspect-ratio: 1/1;
+                height: 100%;
+
+                img {
+                    object-fit: cover;
+                    object-position: center top;
+                }
             }
 
             .info {
@@ -220,6 +225,7 @@ export default {
             width: calc(100% / 6 - 35px);
             position: relative;
             filter: drop-shadow(0 0 5px gray);
+            min-height: 400px;
 
             &:hover {
                 transform: scale(0.94);
@@ -233,8 +239,12 @@ export default {
 
             .img_wrapper {
                 width: 100%;
-                height: 380px;
-                aspect-ratio: 1/1;
+                height: 100%;
+
+                img {
+                    object-fit: cover;
+                    object-position: center top;
+                }
             }
 
             .info_wrapper {
@@ -326,6 +336,58 @@ export default {
             }
         }
     }
+
+    @media screen and (max-width: 1410px) {
+        .movie_card {
+            width: calc(100% / 4 - 35px)!important;
+            transition: all 200ms linear;
+        }
+
+        .tv_card {
+            width: calc(100% / 4 - 35px)!important;
+            transition: all 200ms linear;
+        }
+    }
+
+    @media screen and (max-width: 990px) {
+        .movie_card {
+            width: calc(100% / 3 - 35px)!important;
+            transition: all 200ms linear;
+        }
+
+        .tv_card {
+            width: calc(100% / 3 - 35px)!important;
+            transition: all 200ms linear;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .movie_card {
+            width: calc(100% / 2 - 35px)!important;
+            transition: all 200ms linear;
+        }
+
+        .tv_card {
+            width: calc(100% / 2 - 35px)!important;
+            transition: all 200ms linear;
+        }
+    }
+
+    @media screen and (max-width: 560px) {
+        .movie_card {
+            width: calc(100% / 1 - 35px)!important;
+            transition: all 200ms linear;
+            flex-grow: 1;
+        }
+
+        .tv_card {
+            width: calc(100% / 1 - 35px)!important;
+            transition: all 200ms linear;
+            flex-grow: 1;
+        }
+    }
 }
+
+
 
 </style>
