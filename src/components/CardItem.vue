@@ -35,6 +35,8 @@
         name: "CardItem", 
 
         props: {
+
+            // Elemento singolo all'interno di arrayMovie e arrayTv
             element: Object,
         },
         

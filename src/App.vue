@@ -24,7 +24,7 @@
 // Import Logo_Search
 import LogoSearch from "./components/LogoSearch.vue";
 
-// Import MoviesTv 
+// Import GridWrapperCards
 import GridWrapperCards from "./components/GridWrapperCards.vue";
 
 // Import LoadingCircle
