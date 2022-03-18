@@ -10,7 +10,8 @@
 
     <!-- Main -->
     <main>
-      <MoviesTv :moviesArray="arrayMovieRec" :tvArray="arrayTvRec"/>
+      <GridWrapperCards :moviesArray="arrayMovieRec" :tvArray="arrayTvRec"/>
+      <LoadingCircle class="loader" :class="arrayMovieRec.length == 0 && arrayTvRec == 0 ? 'active' : '' "/>
     </main>
 
   </div>
@@ -21,16 +22,20 @@
 
 <script>
 // Import Logo_Search
-import LogoSearch from "./components/LogoSearch.vue"
+import LogoSearch from "./components/LogoSearch.vue";
 
 // Import MoviesTv 
-import MoviesTv from "./components/MoviesTV.vue"
+import GridWrapperCards from "./components/GridWrapperCards.vue";
+
+// Import LoadingCircle
+import LoadingCircle from"./components/LoadingCircle.vue"
 
 export default {
   name: 'App',
   components: {
     LogoSearch,
-    MoviesTv,
+    GridWrapperCards,
+    LoadingCircle,
   },
 
   data() {
@@ -87,6 +92,14 @@ export default {
     overflow-y: auto;
     padding: 20px 20px;
     position: relative;
+
+    .loader{
+      display: none;
+
+      &.active {
+        display: flex;
+      }
+    }
   }
 }
 
