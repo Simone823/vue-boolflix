@@ -127,7 +127,7 @@ export default {
         h1 {
             text-transform: uppercase;
             color: $color-red;
-            text-shadow: $text-shadow-black;
+            text-shadow: 0 0 5px $color-red;
         }
     }
 
