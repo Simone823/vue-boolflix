@@ -86,6 +86,7 @@ export default {
     color: $color-white;
     overflow-y: auto;
     padding: 20px 20px;
+    position: relative;
   }
 }
 
