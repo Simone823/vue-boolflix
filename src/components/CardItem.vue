@@ -21,7 +21,8 @@
             <!-- Voto -->
             <span class="vote" v-for="(el, index) in 5" :key="index" :class="index < arrotondoVote(element) ? 'color-yellow' : ''">&starf;</span>
             <!-- Descrizione -->
-            <p class="overview">{{element.overview}}</p>
+            <p class="overview" v-if="element.overview">{{element.overview}}</p>
+            <p class="overview" v-else>Descrizione non disponibile</p>
         </div>
     </div>
 
@@ -74,6 +75,8 @@
     position: relative;
     filter: drop-shadow(0 0 5px $color-gray-light);
     min-height: 400px;
+    border-radius: 10px;
+    overflow: hidden;
 
     &:hover {
         transform: scale(0.94);
