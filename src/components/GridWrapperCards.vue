@@ -15,6 +15,12 @@
         </div>
         <CardItem v-for="element in tvArray" :key="element.id" :element="element"/>
 
+        <!-- Categoria popolari -->
+        <div class="categoria" v-if="moviePopularArray.length > 0">
+            <h1 class="popular">Popular</h1>
+        </div>
+        <CardItem v-for="element in moviePopularArray" :key="element.id" :element="element"/>
+
     </div>
 
 </template>
@@ -38,6 +44,9 @@ export default {
 
         // arrayTv componente app
         tvArray: Array,
+
+        // arrayMoviePopular app
+        moviePopularArray: Array,
     },
 
 }
