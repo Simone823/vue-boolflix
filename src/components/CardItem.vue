@@ -75,8 +75,6 @@
     position: relative;
     filter: drop-shadow(0 0 5px $color-gray-light);
     min-height: 400px;
-    border-radius: 10px;
-    overflow: hidden;
 
     &:hover {
         transform: scale(0.94);
