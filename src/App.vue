@@ -5,13 +5,13 @@
     
     <!-- Header -->
     <header>
-      <LogoSearch @arrayMovie="recuperoArrayMovie" @arrayTv="recuperoArrayTv"/>
+      <LogoSearch @arrayMovie="recuperoArrayMovie" @arrayTv="recuperoArrayTv" @arrayMoviePopular="recuperoArrayMoviePop"/>
     </header>
 
     <!-- Main -->
     <main>
-      <GridWrapperCards :moviesArray="arrayMovieRec" :tvArray="arrayTvRec"/>
-      <LoadingCircle class="loader" :class="arrayMovieRec.length == 0 && arrayTvRec == 0 ? 'active' : '' "/>
+      <GridWrapperCards :moviesArray="arrayMovieRec" :tvArray="arrayTvRec" :moviePopularArray="arrayMoviePopRec"/>
+      <LoadingCircle class="loader" :class="arrayMovieRec.length == 0 && arrayTvRec == 0 && arrayMoviePopRec == 0 ? 'active' : '' "/>
     </main>
 
   </div>
@@ -47,6 +47,9 @@ export default {
       // recupero array tv
       arrayTvRec: [],
 
+      // recupero arrayMoviePopular
+      arrayMoviePopRec: [],
+
     }
   },
 
@@ -60,6 +63,11 @@ export default {
     // Recupero array Tv
     recuperoArrayTv: function(arrayTv) {
       this.arrayTvRec = arrayTv;
+    },
+
+    // Recupero arrayMoviePopular
+    recuperoArrayMoviePop: function(arrayMoviePopular) {
+      this.arrayMoviePopRec = arrayMoviePopular;
     }
 
   },
