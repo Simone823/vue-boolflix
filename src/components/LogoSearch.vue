@@ -12,6 +12,11 @@
             <h1>Boolflix</h1>
         </div>
 
+        <!-- Menu -->
+        <ul class="menu">
+            <li :class="activeMenu == true ? 'active' : '' " @click="getMoviePopular()">Popolari</li>
+        </ul>
+
         <!-- Input text, button -->
         <div class="search_btn_wrapper">
             <!-- Input text -->
@@ -47,6 +52,12 @@ export default {
 
             // Array tv
             arrayTv: [],
+
+            // Array film popolari
+            arrayMoviePopular: [],
+
+            // Classe active menu ul
+            activeMenu: false,
         }
     },
 
@@ -96,6 +107,26 @@ export default {
             // Svuoto l'userInput
             this.userInput = "";
         },
+
+        // Chiamata server film popolari
+        getMoviePopular: function() {
+            axios.get("https://api.themoviedb.org/3/movie/popular", {
+                params: {
+                    api_key: "fb43e793fe97fd60ade4def79dc2a4d7",
+                    query: this.userInput,
+                    language: "it",
+                }
+            })
+            .then (response => {
+                // console.log(response.data.results);
+                this.arrayMoviePopular = response.data.results;
+                this.activeMenu = true;
+
+                 // Invio i dati dell'arrayMoviePopular al componente app con evento arrayMoviePopular
+                this.$emit("arrayMoviePopular", this.arrayMoviePopular);
+
+            })
+        }
     }
 }
 </script>
@@ -109,7 +140,7 @@ export default {
 .header_wrapper {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 35px;
     flex-wrap: wrap;
 
 
@@ -128,6 +159,26 @@ export default {
             text-transform: uppercase;
             color: $color-red;
             text-shadow: 0 0 5px $color-red;
+        }
+    }
+
+    ul {
+        color: $color-white;
+
+        li {
+            font-size: 22px;
+            cursor: pointer;
+
+            &:hover {
+                color: $color-green;
+                text-shadow: 0 0 4px $color-green;
+                transition: all 280ms linear;
+            }
+
+            &.active {
+                color: $color-green;
+                text-shadow: 0 0 4px $color-green;
+            }
         }
     }
 
