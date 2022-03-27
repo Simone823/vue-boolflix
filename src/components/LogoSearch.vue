@@ -65,6 +65,11 @@ export default {
 
         // Chiamata server movie
         getServerMovies: function() {
+            // Svuoto l'array movie popular
+            this.arrayMoviePopular.splice(0, this.arrayMoviePopular.length);
+
+            this.activeMenu = false;
+
             axios.get("https://api.themoviedb.org/3/search/movie", {
                 params: {
                     api_key: "fb43e793fe97fd60ade4def79dc2a4d7",
@@ -88,6 +93,11 @@ export default {
 
         // Chiamata server tv
         getServerTv: function () {
+            // Svuoto l'array movie popular
+            this.arrayMoviePopular.splice(0, this.arrayMoviePopular.length);
+
+            this.activeMenu = false;
+
             axios.get("https://api.themoviedb.org/3/search/tv", {
                 params: {
                     api_key: "fb43e793fe97fd60ade4def79dc2a4d7",
@@ -110,6 +120,11 @@ export default {
 
         // Chiamata server film popolari
         getMoviePopular: function() {
+            // Svuoto l'array film e serie tv
+            this.arrayMovie.splice(0, this.arrayMovie.length);
+            this.arrayTv.splice(0, this.arrayTv.length);
+
+
             axios.get("https://api.themoviedb.org/3/movie/popular", {
                 params: {
                     api_key: "fb43e793fe97fd60ade4def79dc2a4d7",
