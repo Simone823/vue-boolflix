@@ -5,13 +5,13 @@
     
     <!-- Header -->
     <header>
-      <LogoSearch @arrayMovie="recuperoArrayMovie" @arrayTv="recuperoArrayTv" @arrayMoviePopular="recuperoArrayMoviePop"/>
+      <LogoSearch @arrayMovie="recuperoArrayMovie" @arrayTv="recuperoArrayTv" @arrayMoviePopular="recuperoArrayMoviePop" @arrayTvPopular="recuperoArrayTvPop"/>
     </header>
 
     <!-- Main -->
     <main>
-      <GridWrapperCards :moviesArray="arrayMovieRec" :tvArray="arrayTvRec" :moviePopularArray="arrayMoviePopRec"/>
-      <LoadingCircle class="loader" :class="arrayMovieRec.length == 0 && arrayTvRec == 0 && arrayMoviePopRec == 0 ? 'active' : '' "/>
+      <GridWrapperCards :moviesArray="arrayMovieRec" :tvArray="arrayTvRec" :moviePopularArray="arrayMoviePopRec" :tvPopularArray="arrayTvPopRec"/>
+      <LoadingCircle class="loader" :class="arrayMovieRec.length == 0 && arrayTvRec.length == 0 && arrayMoviePopRec.length == 0 && arrayTvPopRec.length == 0 ? 'active' : ''"/>
     </main>
 
   </div>
@@ -50,6 +50,9 @@ export default {
       // recupero arrayMoviePopular
       arrayMoviePopRec: [],
 
+      // recupero arrayTvPopular
+      arrayTvPopRec: [],
+
     }
   },
 
@@ -68,6 +71,11 @@ export default {
     // Recupero arrayMoviePopular
     recuperoArrayMoviePop: function(arrayMoviePopular) {
       this.arrayMoviePopRec = arrayMoviePopular;
+    },
+
+    // Recupero arrayMoviePopular
+    recuperoArrayTvPop: function(arrayTvPopular) {
+      this.arrayTvPopRec = arrayTvPopular;
     }
 
   },
