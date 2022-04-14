@@ -3,7 +3,7 @@
     <!-- Loading -->
     <div class="loading">
         <div class="circle"></div>
-        <h2>Nella barra di ricerca scrivi un film o una serie tv e premi invio</h2>
+        <h2>Cerca un film, una serie tv o scegli per categoria</h2>
     </div>
 
 </template>
