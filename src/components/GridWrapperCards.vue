@@ -5,21 +5,27 @@
 
         <!-- Categoria movies -->
         <div class="categoria" v-if="moviesArray.length > 0">
-            <h1>Movies</h1>
+            <h1>Film</h1>
         </div>
         <CardItem v-for="element in moviesArray" :key="element.id" :element="element"/>
 
         <!-- Categoria serie tv -->
         <div class="categoria" v-if="tvArray.length > 0">
-            <h1 class="series_tv">Series Tv</h1>
+            <h1 class="series_tv">Serie Tv</h1>
         </div>
         <CardItem v-for="element in tvArray" :key="element.id" :element="element"/>
 
-        <!-- Categoria popolari -->
+        <!-- Categoria film popolari -->
         <div class="categoria" v-if="moviePopularArray.length > 0">
-            <h1 class="popular">Popular</h1>
+            <h1 class="popular">Film Popolari</h1>
         </div>
         <CardItem v-for="element in moviePopularArray" :key="element.id" :element="element"/>
+
+        <!-- Categoria serie tv popolari -->
+        <div class="categoria" v-if="tvPopularArray.length > 0">
+            <h1 class="popular">Serie Tv Popolari</h1>
+        </div>
+        <CardItem v-for="element in tvPopularArray" :key="element.id" :element="element"/>
 
     </div>
 
@@ -47,6 +53,9 @@ export default {
 
         // arrayMoviePopular app
         moviePopularArray: Array,
+
+        // arrayTvPopular
+        tvPopularArray: Array,
     },
 
 }
