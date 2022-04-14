@@ -11,7 +11,7 @@
         <!-- Info wrapper -->
         <div class="info_wrapper">
             <!-- Titolo -->
-            <h1 class="title">{{element.title || element.original_name}}</h1>
+            <h1 class="title">{{element.title || element.original_name || element.name}}</h1>
             <!-- Titolo originale -->
             <p class="original_title">{{element.original_title || element.original_name}}</p>
             <!-- Lingua -->
