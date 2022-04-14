@@ -6,21 +6,19 @@
         <!-- Logo header -->
         <div class="logo_wrapper">
             <!-- Logo -->
-            <img src="../assets/img/netflix_logo.png" alt="">
-
-            <!-- Titolo -->
-            <h1>Boolflix</h1>
+            <img src="../assets/img/netflix_logo.svg" alt="">
         </div>
 
         <!-- Menu -->
         <ul class="menu">
-            <li :class="activeMenu == true ? 'active' : '' " @click="getMoviePopular()">Popolari</li>
+            <li :class="activeMenu1 == true ? 'active' : '' " @click="getMoviePopular()">Film Popolari</li>
+            <li :class="activeMenu2 == true ? 'active' : '' " @click="getTvPopular()">Serie tv Popolari</li>
         </ul>
 
         <!-- Input text, button -->
         <div class="search_btn_wrapper">
             <!-- Input text -->
-            <input type="text" v-model="userInput" @keyup.enter="getServerMovies(), getServerTv()" placeholder="Digita il nome del film">
+            <input type="text" v-model="userInput" @keyup.enter="getServerMovies(), getServerTv()" placeholder="Cerca un film o una serie tv">
 
             <!-- Button -->
             <button @click="getServerMovies(), getServerTv()">
@@ -56,8 +54,14 @@ export default {
             // Array film popolari
             arrayMoviePopular: [],
 
-            // Classe active menu ul
-            activeMenu: false,
+            // Array Serie tv popolari
+            arrayTvPopular: [],
+
+            // Classe active menu ul 1
+            activeMenu1: false,
+
+            // Classe active menu ul 2
+            activeMenu2: false,
         }
     },
 
@@ -65,10 +69,13 @@ export default {
 
         // Chiamata server movie
         getServerMovies: function() {
-            // Svuoto l'array movie popular
+            // Svuoto l'array movie popular e tv popular
             this.arrayMoviePopular.splice(0, this.arrayMoviePopular.length);
+            this.arrayTvPopular.splice(0, this.arrayTvPopular.length);
 
-            this.activeMenu = false;
+            // Imposto active menu 1 e 2 false
+            this.activeMenu1 = false;
+            this.activeMenu2 = false;
 
             axios.get("https://api.themoviedb.org/3/search/movie", {
                 params: {
@@ -93,10 +100,13 @@ export default {
 
         // Chiamata server tv
         getServerTv: function () {
-            // Svuoto l'array movie popular
+            // Svuoto l'array movie popular e tv popular
             this.arrayMoviePopular.splice(0, this.arrayMoviePopular.length);
+            this.arrayTvPopular.splice(0, this.arrayTvPopular.length);
 
-            this.activeMenu = false;
+            // Imposto active menu 1 e 2 false
+            this.activeMenu1 = false;
+            this.activeMenu2 = false;
 
             axios.get("https://api.themoviedb.org/3/search/tv", {
                 params: {
@@ -120,10 +130,17 @@ export default {
 
         // Chiamata server film popolari
         getMoviePopular: function() {
-            // Svuoto l'array film e serie tv
+
+            // Svuoto l'array film, serie tv e tv popular 
             this.arrayMovie.splice(0, this.arrayMovie.length);
             this.arrayTv.splice(0, this.arrayTv.length);
+            this.arrayTvPopular.splice(0, this.arrayTvPopular.length);
 
+            // Active menu 1 true
+            this.activeMenu1 = true;
+
+            // Active menu 2 false
+            this.activeMenu2 = false;
 
             axios.get("https://api.themoviedb.org/3/movie/popular", {
                 params: {
@@ -135,10 +152,39 @@ export default {
             .then (response => {
                 // console.log(response.data.results);
                 this.arrayMoviePopular = response.data.results;
-                this.activeMenu = true;
-
-                 // Invio i dati dell'arrayMoviePopular al componente app con evento arrayMoviePopular
+                
+                // Invio i dati dell'arrayMoviePopular al componente app con evento arrayMoviePopular
                 this.$emit("arrayMoviePopular", this.arrayMoviePopular);
+
+            })
+        },
+
+        // Chiamata server serie tv popolari
+        getTvPopular: function() {
+            // Svuoto l'array film, serie tv e film popolari
+            this.arrayMovie.splice(0, this.arrayMovie.length);
+            this.arrayTv.splice(0, this.arrayTv.length);
+            this.arrayMoviePopular.splice(0, this.arrayMoviePopular.length);
+
+            // Active menu 1 false
+            this.activeMenu1 = false;
+
+            // Active menu 2 true    
+            this.activeMenu2 = true;
+
+            axios.get("https://api.themoviedb.org/3/tv/popular", {
+                params: {
+                    api_key: "fb43e793fe97fd60ade4def79dc2a4d7",
+                    query: this.userInput,
+                    language: "it",
+                }
+            })
+            .then (response => {
+                // console.log(response.data.results);
+                this.arrayTvPopular = response.data.results;
+               
+                // Invio i dati dell'arrayTvPopular al componente app con evento arrayTvPopular
+                this.$emit("arrayTvPopular", this.arrayTvPopular);
 
             })
         }
@@ -155,7 +201,7 @@ export default {
 .header_wrapper {
     display: flex;
     align-items: center;
-    gap: 35px;
+    gap: 45px;
     flex-wrap: wrap;
 
 
@@ -165,8 +211,7 @@ export default {
         gap: 8px;
     
         img{
-            width: 65px;
-            height: 65px;
+            width: 130px;
             filter: drop-shadow($text-shadow-black);
         }
     
@@ -179,6 +224,9 @@ export default {
 
     ul {
         color: $color-white;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
 
         li {
             font-size: 22px;
